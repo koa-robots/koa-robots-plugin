@@ -11,6 +11,10 @@ exports.default = function () {
         args[_key] = arguments[_key];
     }
 
+    if (args.length === 0) {
+        return noop;
+    }
+
     for (let item of args) {
         plugins.push(_interopRequireDefault(require(`koa-robots-plugin-${ item }`)).default());
     }
@@ -26,4 +30,8 @@ function _interopRequireDefault2(obj) { return obj && obj.__esModule ? obj : { d
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function* noop(next) {
+    yield next;
 }
